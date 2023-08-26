@@ -8,12 +8,4 @@ const pool = new Pool({
     port: process.env.DB_PORT || 5432
 });
 
-const connect = async () => {
-    try{
-        await pool.connect()
-    }catch(err){
-        console.log(err);
-    }
-};
-
-connect();
+export default pool;
