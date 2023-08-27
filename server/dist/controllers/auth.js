@@ -19,6 +19,11 @@ const dbConn_1 = __importDefault(require("../dbConn"));
 const register = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { email, password } = req.body;
+        const userInDB = yield dbConn_1.default.query("SELECT * FROM users WHERE email = $1", [email]);
+        if (userInDB.rows.length !== 0) {
+            res.status(400).json({ msg: 'Such user already exists' });
+            return;
+        }
         const salt = yield bcrypt_1.default.genSalt(10);
         const hashedPassword = yield bcrypt_1.default.hash(password, salt);
         const registeredUser = yield dbConn_1.default.query("INSERT INTO users (email, password, isadmin) VALUES ($1, $2, false)", [email, hashedPassword]);

@@ -7,8 +7,19 @@ export const register = async (req: Request, res: Response) => {
     try{
         const { email, password } = req.body;
 
+        const userInDB = await pool.query(
+            "SELECT * FROM users WHERE email = $1",
+            [email]
+        );
+
+        if(userInDB.rows.length !== 0){
+            res.status(400).json({ msg: 'Such user already exists' });
+            return;
+        }
+
         const salt = await bcrypt.genSalt(10);
         const hashedPassword = await bcrypt.hash(password, salt);
+        
         const registeredUser = await pool.query(
             "INSERT INTO users (email, password, isadmin) VALUES ($1, $2, false)",
             [email, hashedPassword]
