@@ -5,6 +5,7 @@ namespace NodeJS {
         DB_PORT: number,
         DB_USER: string,
         DB_PASSWORD: string,
-        DB: string, 
+        DB: string,
+        JWT_SECRET: string, 
     }
 }
