@@ -1,10 +1,26 @@
-import { Box, Typography } from "@mui/material";
+import { useState, useEffect } from "react";
+import { Box } from "@mui/material";
 import FlexBetween from "../FlexBetween";
 import AdminNavbar from "./AdminNavbar";
 import StandardNavbar from "./StandardNavbar";
+import ResponsiveStandardNavbar from "./ResponsiveStandardNavbar";
 
 const Navbar = () => {
     const isAdmin = false;
+
+    const [ windowSize, setWindowSize ] = useState(getWindowSize());
+
+    useEffect(() => {
+        function handleWindowResize() {
+          setWindowSize(getWindowSize());
+        }
+
+        window.addEventListener('resize', handleWindowResize);
+
+        return () => {
+          window.removeEventListener('resize', handleWindowResize);
+        };
+    }, []);
 
     return(
         <Box
@@ -13,19 +29,23 @@ const Navbar = () => {
                 justifyContent: 'center',
                 borderBottom: 2,
                 borderColor: 'lightgray',
+                position: 'sticky',
+                top: 0,
+                left: 0,
             }}
         >
             <FlexBetween
                 sx={{
-                    position: 'sticky',
-                    maxWidth: 'md',
+                    // maxWidth: '1300px',
                     width: '1300px',
                     padding: '5px',
                 }}
             >
                 {
                     !isAdmin ? (
-                        <StandardNavbar/>
+                        <>
+                            {windowSize > 700 ? <StandardNavbar/> : <ResponsiveStandardNavbar/>}
+                        </>
                     ) : (
                         <AdminNavbar/>
                     )
@@ -34,6 +54,11 @@ const Navbar = () => {
             </FlexBetween>
         </Box>
     )
+};
+
+function getWindowSize() {
+    const { innerWidth } = window;
+    return innerWidth;
 };
 
 export default Navbar;
