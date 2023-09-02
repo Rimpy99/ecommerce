@@ -20,12 +20,12 @@ const ResponsiveStandardNavbar = () => {
             >
                 <HomeIcon
                     sx={{
-                        ...commonNavlinkStyles
+                        ...commonNavlinkStyles,
                     }}    
                 />
                 <MenuIcon
                     sx={{
-                        ...commonNavlinkStyles
+                        ...commonNavlinkStyles,
                     }}
                     onClick={() => {
                         setIsMenuActive(currentState => !currentState)

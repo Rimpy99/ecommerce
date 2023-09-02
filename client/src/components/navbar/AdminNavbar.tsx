@@ -15,7 +15,7 @@ const AdminNavbar = () => {
         >
             <PersonIcon 
                 sx={{
-                    ...commonNavlinkStyles
+                    ...commonNavlinkStyles,
                 }}
             />
         </Box>

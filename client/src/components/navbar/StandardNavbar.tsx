@@ -12,35 +12,35 @@ const StandardNavbar = () => {
             <FlexBetween>
                 <HomeIcon
                     sx={{
-                        ...commonNavlinkStyles
+                        ...commonNavlinkStyles,
                     }}
                 />
                 <Typography
                     sx={{
-                        ...commonNavlinkStyles
+                        ...commonNavlinkStyles,
                     }}
                 >MEN</Typography>
                 <Typography
                     sx={{
-                    ...commonNavlinkStyles
+                        ...commonNavlinkStyles,
                     }}
                 >WOMEN</Typography>
                 <Typography
                     sx={{
                         ...commonNavlinkStyles,
-                        color: 'red'
+                        color: 'red',
                     }}
                 >ON SALE</Typography>
             </FlexBetween>
             <FlexBetween>
                 <PersonIcon
                     sx={{
-                        ...commonNavlinkStyles
+                        ...commonNavlinkStyles,
                     }}
                 />
                 <ShoppingCartIcon
                     sx={{
-                        ...commonNavlinkStyles
+                        ...commonNavlinkStyles,
                     }}
                 />
             </FlexBetween>
