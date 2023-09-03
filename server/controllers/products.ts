@@ -3,7 +3,6 @@ import pool from '../dbConn';
 
 export const getProducts = async (req: Request, res: Response) => {
     try{
-        console.log('t')
         const query = await pool.query(
             "SELECT product_id, name, image, price, sex, color, type, discount_price FROM product"
         );

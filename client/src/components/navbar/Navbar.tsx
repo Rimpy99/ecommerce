@@ -32,6 +32,7 @@ const Navbar = () => {
                 position: 'sticky',
                 top: 0,
                 left: 0,
+                bgcolor: 'white'
             }}
         >
             <FlexBetween
