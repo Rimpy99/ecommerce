@@ -5,18 +5,18 @@ type ProductPropsType = {
         product_id: number,
         name: string,
         image: string,
-        price: string,
+        price: number,
         color: string,
         sex: string,
         type: string,
-        discount_price: string,
+        discount_price: number | null,
     }
 }
 
 const Product = ({product}: ProductPropsType) => {
     return(
         <>
-            <Typography>{product.name}</Typography>
+            <Typography>{product.name} {product.price}</Typography>
         </>
     )
 };
