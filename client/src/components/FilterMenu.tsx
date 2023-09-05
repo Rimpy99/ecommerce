@@ -19,12 +19,22 @@ type FilterMenuPropsType = {
 const FilterMenu = ({colors, types, options, setOptions}: FilterMenuPropsType) => {
     return(
         <>
-            <Button onClick={() => setOptions({...options, color: ''})}>all</Button>
-            { 
-                colors.map((color) => (
-                    <Button onClick={() => setOptions({...options, color: color})}>{color}</Button>
-                ))
-            }
+            <Box>
+                <Button onClick={() => setOptions({...options, color: ''})}>all</Button>
+                { 
+                    colors.map((color) => (
+                        <Button onClick={() => setOptions({...options, color: color})}>{color}</Button>
+                    ))
+                }
+            </Box>
+            <Box>
+                <Button onClick={() => setOptions({...options, type: ''})}>all</Button>
+                { 
+                    types.map((type) => (
+                        <Button onClick={() => setOptions({...options, type: type})}>{type}</Button>
+                    ))
+                }
+            </Box>
         </>
     )
 };
