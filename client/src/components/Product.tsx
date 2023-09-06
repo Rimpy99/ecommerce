@@ -17,6 +17,7 @@ const Product = ({product}: ProductPropsType) => {
     return(
         <>
             <Typography>{product.name} {product.price}</Typography>
+            <img src={`http://localhost:3005/images/${product.image}.jpg`} alt={`${product.name} picture`}/>
         </>
     )
 };

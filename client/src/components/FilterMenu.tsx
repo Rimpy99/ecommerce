@@ -35,6 +35,11 @@ const FilterMenu = ({colors, types, options, setOptions}: FilterMenuPropsType) =
                     ))
                 }
             </Box>
+            <Box>
+                <Button onClick={() => setOptions({...options, sex: ''})}>All</Button>
+                <Button onClick={() => setOptions({...options, sex: 'M'})}>Men</Button>
+                <Button onClick={() => setOptions({...options, sex: 'F'})}>Women</Button>
+            </Box>
         </>
     )
 };
