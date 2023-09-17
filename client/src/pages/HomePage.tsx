@@ -34,8 +34,9 @@ const HomePage = () => {
         min_price: 0,
         max_price: 0,
     });
-    const [ colors, setColors ] = useState<string[]>([''])
-    const [ types, setTypes ] = useState<string[]>([''])
+    const [ colors, setColors ] = useState<string[]>(['']);
+    const [ types, setTypes ] = useState<string[]>(['']);
+    const [ priceRange, setPriceRange ] = useState<number[]>([0, 100]);
     const [ isError, setIsError ] = useState<boolean>(false);
 
     //GETTING DATA FROM DATABASE
@@ -75,6 +76,8 @@ const HomePage = () => {
                 max_price: maxPrice.price
             })
 
+            setPriceRange([options.min_price, options.max_price])
+
             setColors(arrayOfColors)
             
             setTypes(arrayOfTypes)
@@ -111,13 +114,20 @@ const HomePage = () => {
     //RETURN IF EVERYTHING IS FINE
     return(
         <>
-            <FilterMenu colors={colors} types={types} options={options} setOptions={setOptions} />
+            <FilterMenu
+                colors={colors} 
+                types={types} 
+                options={options} 
+                setOptions={setOptions} 
+                priceRange={priceRange}
+                setPriceRange={setPriceRange}
+            />
             {
                 products.map((product) => {
                     if(options.color.length !== 0 && product.color !== options.color) return
                     if(options.type.length !== 0 && product.type !== options.type) return
                     if(options.sex.length !== 0 && options.sex !== product.sex) return
-                    if(!(product.price >= options.min_price && product.price <= options.max_price)) return
+                    if(!(product.price >= priceRange[0] && product.price <= priceRange[1])) return
                     
                     return(
                         <Product product={product}/>
