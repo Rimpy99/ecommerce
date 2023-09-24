@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Box, Typography } from "@mui/material";
 import FlexBetween from '../FlexBetween';
 import HomeIcon from '@mui/icons-material/Home';
@@ -10,6 +10,14 @@ import { commonNavlinkStyles } from '../../styles/commonNavlinkStyles';
 const ResponsiveStandardNavbar = () => {
 
     const [ isMenuActive, setIsMenuActive ] = useState<boolean>(false);
+
+    useEffect(() => {
+        if(isMenuActive){
+            document.body.style.overflow = "hidden"
+        }else{
+            document.body.style.overflow = "auto"
+        }
+    }, [isMenuActive]);
 
     return(
         <>
@@ -37,14 +45,18 @@ const ResponsiveStandardNavbar = () => {
                 <Box
                     sx={{
                         position: 'absolute',
-                        top: '100%',
+                        top: 'calc(100% + 2px)',
                         left: 0,
                         width: '100%',
                         height: 'calc(100vh - 100%)',
                         display: 'flex',
                         justifyContent: 'center',
                         py: 1,
+                        // zIndex: 1000,
+                        bgColor: 'red',
                     }}
+
+                    style={{ backgroundColor: 'white' }}
                 >
                     <Box>
                         <FlexBetween
@@ -81,7 +93,7 @@ const ResponsiveStandardNavbar = () => {
                             >MEN</Typography>
                             <Typography
                                 sx={{
-                                    ...commonNavlinkStyles
+                                    ...commonNavlinkStyles,
                                 }}
                             >WOMEN</Typography>
                             <Typography
