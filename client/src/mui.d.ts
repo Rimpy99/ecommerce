@@ -1,8 +1,9 @@
 import "@mui/material/styles/createPalette";
 
 type AppColorsType = {
-  navLink: string,
-  navLinkBackground: string,
+  textColor: string,
+  buttonOnHoverBackground: string,
+  buttonActiveBackground: string,
 }
 
 declare module "@mui/material/styles/createPalette" {

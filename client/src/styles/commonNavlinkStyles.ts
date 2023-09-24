@@ -6,8 +6,8 @@ export const commonNavlinkStyles = {
     width: '5rem',
     textAlign: 'center',
     borderRadius: 1,
-    color: 'appColors.navLink',
+    color: 'appColors.textColor',
     "&:hover": {
-        bgcolor: 'appColors.navLinkBackground',
+        bgcolor: 'appColors.buttonOnHoverBackground',
     }
 }

@@ -32,14 +32,15 @@ const Navbar = () => {
                 position: 'sticky',
                 top: 0,
                 left: 0,
-                bgcolor: 'white'
+                bgcolor: 'white',
+                zIndex: 1000,
             }}
         >
             <FlexBetween
                 sx={{
                     // maxWidth: '1300px',
-                    width: '1300px',
-                    padding: '5px',
+                    width: '1400px',
+                    padding: '5px'
                 }}
             >
                 {

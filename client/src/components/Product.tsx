@@ -1,4 +1,4 @@
-import { Typography } from "@mui/material";
+import { Typography, Box } from "@mui/material";
 
 type ProductPropsType = {
     product: {
@@ -15,10 +15,11 @@ type ProductPropsType = {
 
 const Product = ({product}: ProductPropsType) => {
     return(
-        <>
-            <Typography>{product.name} {product.price}</Typography>
-            <img src={`http://localhost:3005/images/${product.image}.jpg`} alt={`${product.name} picture`}/>
-        </>
+        <Box sx={{ cursor: 'pointer', border: '1px solid lightgray', color: 'appColors.textColor' }}>
+            <img style={{ width: '100%' }} src={`http://localhost:3005/images/${product.image}.jpg`} alt={`${product.name} picture`}/>
+            <Typography sx={{ padding: '5px', fontSize: '18px', textTransform: 'uppercase', letterSpacing: '2px' }}>{product.name}</Typography>
+            <Typography sx={{ padding: '5px', fontSize: '18px' }}>{product.price}</Typography>
+        </Box>
     )
 };
 

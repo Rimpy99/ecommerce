@@ -113,28 +113,52 @@ const HomePage = () => {
 
     //RETURN IF EVERYTHING IS FINE
     return(
-        <>
-            <FilterMenu
-                colors={colors} 
-                types={types} 
-                options={options} 
-                setOptions={setOptions} 
-                priceRange={priceRange}
-                setPriceRange={setPriceRange}
-            />
-            {
-                products.map((product) => {
-                    if(options.color.length !== 0 && product.color !== options.color) return
-                    if(options.type.length !== 0 && product.type !== options.type) return
-                    if(options.sex.length !== 0 && options.sex !== product.sex) return
-                    if(!(product.price >= priceRange[0] && product.price <= priceRange[1])) return
-                    
-                    return(
-                        <Product product={product}/>
-                    )
-                })
-            }
-        </>
+        <Box 
+            sx={{ 
+                width: '100%', 
+                maxWidth: 1400, 
+                display: 'flex', 
+                flexDirection: {xs: 'column', lg: 'row'},
+                // flexDirection: 'column',
+                margin: 'auto', 
+            }}
+        >
+            <Box sx={{ bgcolor: 'white', paddingTop: '20px', width: {xs: '100%', lg:'200px'} }}>
+                <FilterMenu
+                    colors={colors} 
+                    types={types} 
+                    options={options} 
+                    setOptions={setOptions} 
+                    priceRange={priceRange}
+                    setPriceRange={setPriceRange}
+                />
+            </Box>
+            <Box
+                sx={{
+                    display: 'grid',
+                    gridTemplateColumns: {xs: '300px', sm:'repeat(2, min(40%, 300px))', lg:'repeat(3, 300px)'},
+                    gap: 5,
+                    justifyContent: 'center',
+                    marginLeft: 'auto',
+                    marginRight: {xs: 'auto', lg: 0},
+                    // width: {xs: '100%', md: 'auto'}
+                    paddingTop: '20px'
+                }}
+            >
+                {
+                    products.map((product) => {
+                        if(options.color.length !== 0 && product.color !== options.color) return
+                        if(options.type.length !== 0 && product.type !== options.type) return
+                        if(options.sex.length !== 0 && options.sex !== product.sex) return
+                        if(!(product.price >= priceRange[0] && product.price <= priceRange[1])) return
+                        
+                        return(
+                            <Product product={product}/>
+                        )
+                    })
+                }
+            </Box>
+        </Box>
     )
 };
 
