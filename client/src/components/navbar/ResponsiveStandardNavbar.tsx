@@ -52,7 +52,6 @@ const ResponsiveStandardNavbar = () => {
                         display: 'flex',
                         justifyContent: 'center',
                         py: 1,
-                        // zIndex: 1000,
                         bgColor: 'red',
                     }}
 
