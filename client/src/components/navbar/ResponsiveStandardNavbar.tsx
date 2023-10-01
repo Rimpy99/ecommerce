@@ -3,9 +3,11 @@ import { Box, Typography } from "@mui/material";
 import FlexBetween from '../FlexBetween';
 import HomeIcon from '@mui/icons-material/Home';
 import MenuIcon from '@mui/icons-material/Menu';
+import CloseIcon from '@mui/icons-material/Close';
 import PersonIcon from '@mui/icons-material/Person';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { commonNavlinkStyles } from '../../styles/commonNavlinkStyles';
+import { Link } from "react-router-dom";
 
 const ResponsiveStandardNavbar = () => {
 
@@ -26,19 +28,34 @@ const ResponsiveStandardNavbar = () => {
                     width: '100%',
                 }}
             >
-                <HomeIcon
-                    sx={{
-                        ...commonNavlinkStyles,
-                    }}    
-                />
-                <MenuIcon
-                    sx={{
-                        ...commonNavlinkStyles,
-                    }}
-                    onClick={() => {
-                        setIsMenuActive(currentState => !currentState)
-                    }}
-                />
+                <Link to={'/'} onClick={() => setIsMenuActive(false)}>
+                    <HomeIcon
+                        sx={{
+                            ...commonNavlinkStyles,
+                        }}    
+                    />
+                </Link>
+                {
+                    !isMenuActive 
+                    ?
+                        <MenuIcon
+                            sx={{
+                                ...commonNavlinkStyles,
+                            }}
+                            onClick={() => {
+                                setIsMenuActive(true)
+                            }}
+                        />
+                    :
+                        <CloseIcon
+                            sx={{
+                                ...commonNavlinkStyles,
+                            }}
+                            onClick={() => {
+                                setIsMenuActive(false)
+                            }}
+                        />
+                }
             </FlexBetween>
             {  
                 isMenuActive && 
@@ -54,7 +71,6 @@ const ResponsiveStandardNavbar = () => {
                         py: 1,
                         bgColor: 'red',
                     }}
-
                     style={{ backgroundColor: 'white' }}
                 >
                     <Box>
@@ -65,16 +81,12 @@ const ResponsiveStandardNavbar = () => {
                                 borderColor: 'lightgray',
                             }}
                         >
-                            <PersonIcon
-                                sx={{
-                                    ...commonNavlinkStyles
-                                }} 
-                            />
-                            <ShoppingCartIcon
-                                sx={{
-                                    ...commonNavlinkStyles
-                                }} 
-                            />
+                            <Link to={'/x'} style={{ textDecoration: 'none' }} onClick={() => setIsMenuActive(false)}>
+                                <PersonIcon sx={{ ...commonNavlinkStyles }} />
+                            </Link>
+                            <Link to={'/cart'} style={{ textDecoration: 'none' }} onClick={() => setIsMenuActive(false)}>
+                                <ShoppingCartIcon sx={{ ...commonNavlinkStyles }} />
+                            </Link>
                         </FlexBetween>
                         <Box
                             sx={{
@@ -85,22 +97,15 @@ const ResponsiveStandardNavbar = () => {
                                 py: 2,
                             }}
                         >
-                            <Typography
-                                sx={{
-                                    ...commonNavlinkStyles
-                                }}
-                            >MEN</Typography>
-                            <Typography
-                                sx={{
-                                    ...commonNavlinkStyles,
-                                }}
-                            >WOMEN</Typography>
-                            <Typography
-                                sx={{
-                                    ...commonNavlinkStyles,
-                                    color: 'red'
-                                }}
-                            >ON SALE</Typography>
+                            <Link to={'/men'} style={{ textDecoration: 'none' }} onClick={() => setIsMenuActive(false)}>
+                                <Typography sx={{ ...commonNavlinkStyles }}>MEN</Typography>
+                            </Link>
+                            <Link to={'/women'} style={{ textDecoration: 'none' }} onClick={() => setIsMenuActive(false)}>
+                                <Typography sx={{ ...commonNavlinkStyles }}>WOMEN</Typography>
+                            </Link>
+                            <Link to={'/onsale'} style={{ textDecoration: 'none' }} onClick={() => setIsMenuActive(false)}>
+                                <Typography sx={{ ...commonNavlinkStyles, color: 'red' }}>ON SALE</Typography>
+                            </Link>
                         </Box>
                     </Box>
                 </Box>

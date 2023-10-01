@@ -3,46 +3,38 @@ import FlexBetween from "../FlexBetween";
 import HomeIcon from '@mui/icons-material/Home';
 import PersonIcon from '@mui/icons-material/Person';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import NavLink from './NavLink';
 import { commonNavlinkStyles } from '../../styles/commonNavlinkStyles';
 
-const StandardNavbar = () => {
+type StandardNavbarPropsTypes = {
+    location: string,
+}
+
+const StandardNavbar = ({location}: StandardNavbarPropsTypes) => {
 
     return(
         <>
             <FlexBetween>
-                <HomeIcon
-                    sx={{
-                        ...commonNavlinkStyles,
-                    }}
-                />
-                <Typography
-                    sx={{
-                        ...commonNavlinkStyles,
-                    }}
-                >MEN</Typography>
-                <Typography
-                    sx={{
-                        ...commonNavlinkStyles,
-                    }}
-                >WOMEN</Typography>
-                <Typography
-                    sx={{
-                        ...commonNavlinkStyles,
-                        color: 'red',
-                    }}
-                >ON SALE</Typography>
+                <NavLink isPageCorrect={location === '/' ? true : false} linkTo={'/'} isChildAnIcon={true}>
+                    <HomeIcon/>
+                </NavLink>
+                <NavLink isPageCorrect={location === '/men' ? true : false} linkTo={'/men'} isChildAnIcon={false}>
+                    <Typography sx={{ fontWeight: 'bold' }}>MEN</Typography>
+                </NavLink>
+                <NavLink isPageCorrect={location === '/women' ? true : false} linkTo={'/women'} isChildAnIcon={false}>
+                    <Typography sx={{ fontWeight: 'bold' }}>WOMEN</Typography>
+                </NavLink>
+                <NavLink isPageCorrect={location === '/onsale' ? true : false} linkTo={'/onsale'} isChildAnIcon={false}>
+                    <Typography sx={{ fontWeight: 'bold' }}>ON SALE</Typography>
+                </NavLink>
             </FlexBetween>
             <FlexBetween>
-                <PersonIcon
-                    sx={{
-                        ...commonNavlinkStyles,
-                    }}
-                />
-                <ShoppingCartIcon
-                    sx={{
-                        ...commonNavlinkStyles,
-                    }}
-                />
+                <NavLink isPageCorrect={location === '/x' ? true : false} linkTo={'/x'} isChildAnIcon={true}>
+                    <PersonIcon/>
+                </NavLink>
+                <NavLink isPageCorrect={location === '/cart' ? true : false} linkTo={'/cart'} isChildAnIcon={true}>
+                    <ShoppingCartIcon/>
+                </NavLink>
             </FlexBetween>
         </>
     )

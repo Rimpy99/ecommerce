@@ -1,12 +1,17 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect } from 'react';
 import { Box } from "@mui/material";
 import FlexBetween from "../FlexBetween";
 import AdminNavbar from "./AdminNavbar";
 import StandardNavbar from "./StandardNavbar";
 import ResponsiveStandardNavbar from "./ResponsiveStandardNavbar";
+import { useLocation } from 'react-router-dom';
 
 const Navbar = () => {
     const isAdmin = false;
+
+    const location = useLocation().pathname;
+
+    console.log(location)
 
     const [ windowSize, setWindowSize ] = useState(getWindowSize());
 
@@ -46,7 +51,7 @@ const Navbar = () => {
                 {
                     !isAdmin ? (
                         <>
-                            {windowSize > 700 ? <StandardNavbar/> : <ResponsiveStandardNavbar/>}
+                            {windowSize > 700 ? <StandardNavbar location={location}/> : <ResponsiveStandardNavbar/>}
                         </>
                     ) : (
                         <AdminNavbar/>

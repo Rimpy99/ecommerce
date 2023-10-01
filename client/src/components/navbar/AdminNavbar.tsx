@@ -1,5 +1,5 @@
 import { Box } from '@mui/material';
-import PersonIcon from '@mui/icons-material/Person';
+import HomeIcon from '@mui/icons-material/Home';
 import { commonNavlinkStyles } from '../../styles/commonNavlinkStyles';
 
 const AdminNavbar = () => {
@@ -13,7 +13,7 @@ const AdminNavbar = () => {
                 padding: '0 30px'
             }}
         >
-            <PersonIcon 
+            <HomeIcon 
                 sx={{
                     ...commonNavlinkStyles,
                 }}
