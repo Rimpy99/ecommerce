@@ -16,7 +16,17 @@ exports.getProducts = void 0;
 const dbConn_1 = __importDefault(require("../dbConn"));
 const getProducts = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const query = yield dbConn_1.default.query("SELECT product_id, name, image, price, sex, color, type, discount_price FROM product");
+        let gender = req.params.gender;
+        if (gender === 'men') {
+            gender = 'M';
+        }
+        else if (gender === 'women') {
+            gender = 'F';
+        }
+        else {
+            res.status(500).json({ msg: "Wrong parameter was passed, should be 'men' or 'women'" });
+        }
+        const query = yield dbConn_1.default.query("SELECT product_id, name, image, price, sex, color, type, discount_price FROM product WHERE sex = $1", [gender]);
         if (query.rows.length === 0) {
             res.status(500).json({ msg: 'No data in database' });
             return;

@@ -11,8 +11,6 @@ const Navbar = () => {
 
     const location = useLocation().pathname;
 
-    console.log(location)
-
     const [ windowSize, setWindowSize ] = useState(getWindowSize());
 
     useEffect(() => {

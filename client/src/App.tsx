@@ -11,7 +11,8 @@ const App = () => {
       <BrowserRouter>
         <Navbar/>
         <Routes>
-          <Route path='/' element={<HomePage/>}/>
+          <Route path='/men' element={<HomePage/>}/>
+          <Route path='/women' element={<HomePage/>}/>
         </Routes>
       </BrowserRouter>
     </ThemeProvider>
