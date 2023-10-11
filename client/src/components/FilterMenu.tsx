@@ -23,9 +23,6 @@ type FilterMenuPropsType = {
 
 const FilterMenu = ({colors, types, options, setOptions, priceRange, setPriceRange}: FilterMenuPropsType) => {
 
-    console.log(options)
-    console.log(priceRange)
-
     const [ isColorOpen, setIsColorOpen ] = useState<boolean>(false);
     const [ isClothingOpen, setIsClothingOpen ] = useState<boolean>(false);
     const [ isGenderOpen, setIsGenderOpen ] = useState<boolean>(false);

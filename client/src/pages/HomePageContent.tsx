@@ -16,7 +16,7 @@ type ProductType = {
     color: string,
     sex: string,
     type: string,
-    discount_price: number | null,
+    discount_percent: number | null,
 }
 
 type OptionsType = {
@@ -48,6 +48,7 @@ const HomePageContent = ({location}: HomePageContentPropsType) => {
             const fetchProducts = await fetch(`/products/${location}`, {
                 method: 'GET'
             });
+            !fetchProducts.ok && setIsError(true);
             const arrayOfProducts = await fetchProducts.json();
             setProducts(arrayOfProducts);
         }catch(err){
