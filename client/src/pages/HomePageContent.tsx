@@ -13,10 +13,10 @@ type ProductType = {
     name: string,
     image: string,
     price: number,
-    color: string,
     sex: string,
+    color: string,
     type: string,
-    discount_percent: number | null,
+    discount_price: number | null,
 }
 
 type OptionsType = {
@@ -147,7 +147,6 @@ const HomePageContent = ({location}: HomePageContentPropsType) => {
                     justifyContent: 'center',
                     marginLeft: 'auto',
                     marginRight: {xs: 'auto', lg: 0},
-                    // width: {xs: '100%', md: 'auto'}
                     paddingTop: '20px'
                 }}
             >
@@ -156,8 +155,8 @@ const HomePageContent = ({location}: HomePageContentPropsType) => {
                         if(options.color.length !== 0 && product.color !== options.color) return
                         if(options.type.length !== 0 && product.type !== options.type) return
                         if(options.sex.length !== 0 && options.sex !== product.sex) return
-                        if(product.discount_percent){
-                            if(!(product.price >= priceRange[0] && product.price <= priceRange[1])) return
+                        if(product.discount_price){
+                            if(!(product.discount_price >= priceRange[0] && product.discount_price <= priceRange[1])) return
                         }else{
                             if(!(product.price >= priceRange[0] && product.price <= priceRange[1])) return
                         }

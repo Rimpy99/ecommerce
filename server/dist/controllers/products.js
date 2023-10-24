@@ -33,8 +33,7 @@ const getProducts = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
                 price, 
                 sex, 
                 color, 
-                type, 
-                discount_percent,
+                type,
                 CASE WHEN discount_percent IS NULL THEN 
                     null
                 ELSE

@@ -9,7 +9,7 @@ type ProductPropsType = {
         color: string,
         sex: string,
         type: string,
-        discount_percent: number | null,
+        discount_price: number | null,
     }
 }
 
@@ -20,12 +20,15 @@ const Product = ({product}: ProductPropsType) => {
             <Typography sx={{ padding: '5px', fontSize: '18px', textTransform: 'uppercase', letterSpacing: '2px' }}>{product.name}</Typography>
             <Box sx={{ display: 'flex' }}>
                 <Typography 
-                    sx={{ padding: '5px', fontSize: '18px', textDecoration: product.discount_percent ? 'line-through' : 'none' }}
+                    sx={{ padding: '5px', fontSize: '18px', textDecoration: product.discount_price ? 'line-through' : 'none' }}
                 >
                     {product.price}
                 </Typography>
                 { 
-                    product.discount_percent && <Typography sx={{ padding: '5px', fontSize: '18px', color: 'red' }}>{product.price - (product.price * product.discount_percent / 100)}</Typography>
+                    product.discount_price && 
+                    <Typography sx={{ padding: '5px', fontSize: '18px', color: 'red' }}>
+                        {product.discount_price}
+                    </Typography>
                 }
             </Box>
         </Box>

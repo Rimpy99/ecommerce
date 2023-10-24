@@ -21,8 +21,7 @@ export const getProducts = async (req: Request, res: Response) => {
                 price, 
                 sex, 
                 color, 
-                type, 
-                discount_percent,
+                type,
                 CASE WHEN discount_percent IS NULL THEN 
                     null
                 ELSE
