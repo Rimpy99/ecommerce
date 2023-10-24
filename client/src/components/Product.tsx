@@ -25,7 +25,7 @@ const Product = ({product}: ProductPropsType) => {
                     {product.price}
                 </Typography>
                 { 
-                    product.discount_percent && <Typography sx={{ padding: '5px', fontSize: '18px', color: 'red' }}>{product.discount_percent}</Typography>
+                    product.discount_percent && <Typography sx={{ padding: '5px', fontSize: '18px', color: 'red' }}>{product.price - (product.price * product.discount_percent / 100)}</Typography>
                 }
             </Box>
         </Box>

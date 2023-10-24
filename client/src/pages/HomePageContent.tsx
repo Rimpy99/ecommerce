@@ -49,7 +49,8 @@ const HomePageContent = ({location}: HomePageContentPropsType) => {
                 method: 'GET'
             });
             !fetchProducts.ok && setIsError(true);
-            const arrayOfProducts = await fetchProducts.json();
+            let arrayOfProducts = await fetchProducts.json();
+            console.log(arrayOfProducts)
             setProducts(arrayOfProducts);
         }catch(err){
             setIsError(true);
@@ -155,7 +156,11 @@ const HomePageContent = ({location}: HomePageContentPropsType) => {
                         if(options.color.length !== 0 && product.color !== options.color) return
                         if(options.type.length !== 0 && product.type !== options.type) return
                         if(options.sex.length !== 0 && options.sex !== product.sex) return
-                        if(!(product.price >= priceRange[0] && product.price <= priceRange[1])) return
+                        if(product.discount_percent){
+                            if(!(product.price >= priceRange[0] && product.price <= priceRange[1])) return
+                        }else{
+                            if(!(product.price >= priceRange[0] && product.price <= priceRange[1])) return
+                        }
                         
                         return(
                             <Product product={product}/>

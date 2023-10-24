@@ -14,7 +14,21 @@ export const getProducts = async (req: Request, res: Response) => {
         }
 
         const query = await pool.query(
-            "SELECT product_id, name, image, price, sex, color, type, discount_percent FROM product WHERE sex = $1",
+            `SELECT 
+                product_id, 
+                name, 
+                image, 
+                price, 
+                sex, 
+                color, 
+                type, 
+                discount_percent,
+                CASE WHEN discount_percent IS NULL THEN 
+                    null
+                ELSE
+                    ROUND(CAST(price - (price * discount_percent / 100) AS numeric), 2)
+                END AS discount_price
+            FROM product WHERE sex = $1`,
             [gender]
         );
 
