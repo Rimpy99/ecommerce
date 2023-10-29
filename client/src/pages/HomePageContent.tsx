@@ -63,26 +63,29 @@ const HomePageContent = ({location}: HomePageContentPropsType) => {
 
     useEffect(() => {
         if(products.length){
-            const maxPrice = (products as ProductType[]).reduce((previous: ProductType, current: ProductType) => {
-                return current.price > previous.price ? current : previous
-            })
+            const arrayOfPrices = [
+                ...new Set(
+                    products.map((product) => {
+                        if(product.discount_price){
+                            return product.discount_price;
+                        }
+                        return product.price;
+                    })
+                )
+            ];
 
-            const minPrice = (products as ProductType[]).reduce((previous: ProductType, current: ProductType) => {
-                return current.price < previous.price ? current : previous;
-            })
-
+            const minPrice = Math.min(...arrayOfPrices);
+            const maxPrice = Math.max(...arrayOfPrices);
             const arrayOfColors = [...new Set(products.map((product) => product.color))];
-
             const arrayOfTypes = [...new Set(products.map((product) => product.type))];
 
             setOptions({
                 ...options,
-                min_price: minPrice.price,
-                max_price: maxPrice.price
+                min_price: minPrice,
+                max_price: maxPrice
             })
 
-            // setPriceRange([options.min_price, options.max_price])
-            setPriceRange([minPrice.price, maxPrice.price])
+            setPriceRange([minPrice, maxPrice])
 
             setColors(arrayOfColors)
             
