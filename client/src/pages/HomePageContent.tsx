@@ -45,12 +45,9 @@ const HomePageContent = ({location}: HomePageContentPropsType) => {
     //GETTING DATA FROM DATABASE
     const getAllProductsFromDB = async () => {
         try{
-            const fetchProducts = await fetch(`/products/${location}`, {
-                method: 'GET'
-            });
+            const fetchProducts = await fetch(`/products/${location}`, { method: 'GET' });
             !fetchProducts.ok && setIsError(true);
             let arrayOfProducts = await fetchProducts.json();
-            console.log(arrayOfProducts)
             setProducts(arrayOfProducts);
         }catch(err){
             setIsError(true);
