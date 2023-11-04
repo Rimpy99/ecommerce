@@ -27,7 +27,7 @@ type OptionsType = {
     max_price: number, 
 }
 
-const HomePageContent = ({location}: HomePageContentPropsType) => {
+const ProductsPageContent = ({location}: HomePageContentPropsType) => {
     //STATES
     const [ products, setProducts ] = useState<ProductType[] | []>([]);
     const [ options, setOptions ] = useState<OptionsType>({
@@ -137,6 +137,7 @@ const HomePageContent = ({location}: HomePageContentPropsType) => {
                     setOptions={setOptions} 
                     priceRange={priceRange}
                     setPriceRange={setPriceRange}
+                    isItOnSalePage={location === 'onsale' ? true : false}
                 />
             </Box>
             <Box
@@ -171,4 +172,4 @@ const HomePageContent = ({location}: HomePageContentPropsType) => {
     )
 };
 
-export default HomePageContent;
+export default ProductsPageContent;
