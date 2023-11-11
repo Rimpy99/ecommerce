@@ -3,6 +3,7 @@ import Navbar from "./components/navbar/Navbar";
 import ProductsPage from "./pages/ProductsPage";
 import { ThemeProvider } from '@mui/material/styles';
 import { theme } from './styles/theme';
+import HomePage from "./pages/HomePage";
 
 const App = () => {
 
@@ -11,6 +12,7 @@ const App = () => {
       <BrowserRouter>
         <Navbar/>
         <Routes>
+          <Route path='/' element={<HomePage/>}/>
           <Route path='/men' element={<ProductsPage/>}/>
           <Route path='/women' element={<ProductsPage/>}/>
           <Route path='/onsale' element={<ProductsPage/>}/>

@@ -137,7 +137,7 @@ const ProductsPageContent = ({location}: HomePageContentPropsType) => {
                     setOptions={setOptions} 
                     priceRange={priceRange}
                     setPriceRange={setPriceRange}
-                    isItOnSalePage={location === 'onsale' ? true : false}
+                    // isItOnSalePage={location === 'onsale' ? true : false}
                 />
             </Box>
             <Box
