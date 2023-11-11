@@ -6,6 +6,7 @@ const ProductDetailsPage = () => {
     return(
         <>
             {productId}
+            test
         </>
     )
 };
