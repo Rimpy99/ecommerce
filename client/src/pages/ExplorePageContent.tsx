@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import Product from "../components/Product";
+import ProductCard from "../components/ProductCard";
 import FilterMenu from "../components/FilterMenu";
 import SyncLoader from "react-spinners/SyncLoader";
 import { Typography, Box } from "@mui/material";
@@ -27,7 +27,7 @@ type OptionsType = {
     max_price: number, 
 }
 
-const ProductsPageContent = ({location}: HomePageContentPropsType) => {
+const ExplorePageContent = ({location}: HomePageContentPropsType) => {
     //STATES
     const [ products, setProducts ] = useState<ProductType[] | []>([]);
     const [ options, setOptions ] = useState<OptionsType>({
@@ -163,7 +163,7 @@ const ProductsPageContent = ({location}: HomePageContentPropsType) => {
                         }
                         
                         return(
-                            <Product product={product}/>
+                            <ProductCard product={product}/>
                         )
                     })
                 }
@@ -172,4 +172,4 @@ const ProductsPageContent = ({location}: HomePageContentPropsType) => {
     )
 };
 
-export default ProductsPageContent;
+export default ExplorePageContent;
