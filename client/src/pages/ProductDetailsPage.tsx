@@ -6,7 +6,6 @@ const ProductDetailsPage = () => {
     return(
         <>
             {productId}
-            test2
         </>
     )
 };
