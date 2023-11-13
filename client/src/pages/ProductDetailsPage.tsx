@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { Box, Typography } from "@mui/material";
+import SyncLoader from "react-spinners/SyncLoader";
 
 type ProductType = {
     product_id: number,
@@ -31,6 +33,32 @@ const ProductDetailsPage = () => {
     useEffect(() => {
         getProductInfoFromDB();
     }, [])
+
+    if(productInfo === null){
+        if(isError){
+            return(
+                <Box sx={{
+                    minHeight: '80vh',
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                }}>
+                    <Typography>Something went wrong!</Typography>
+                </Box>
+            );
+        }
+
+        return(
+            <Box sx={{
+                minHeight: '80vh',
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+            }}>
+                <SyncLoader color={'lightgray'}/>
+            </Box>
+        )
+    }
 
     return(
         <>
