@@ -17,7 +17,7 @@ const App = () => {
           <Route path='/men' element={<ExplorePage/>}/>
           <Route path='/women' element={<ExplorePage/>}/>
           <Route path='/onsale' element={<ExplorePage/>}/>
-          <Route path='/product/:productId' element={<ProductDetailsPage/>}/>
+          <Route path='/products/:productId' element={<ProductDetailsPage/>}/>
         </Routes>
       </BrowserRouter>
     </ThemeProvider>

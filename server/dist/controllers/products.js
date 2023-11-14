@@ -12,8 +12,40 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getProducts = exports.getOnSaleProducts = void 0;
+exports.getProducts = exports.getOnSaleProducts = exports.getProductDetails = void 0;
 const dbConn_1 = __importDefault(require("../dbConn"));
+const getProductDetails = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const productId = req.params.productId;
+        const query = yield dbConn_1.default.query(`SELECT 
+                product_id, 
+                name, 
+                image, 
+                price, 
+                sex, 
+                color, 
+                type,
+                ROUND(CAST(price - (price * discount_percent / 100) AS NUMERIC), 2) AS discount_price,
+                xs,
+                s,
+                m,
+                l,
+                xl,
+                xxl
+            FROM product NATURAL JOIN product_sizes WHERE product_id = $1`, [productId]);
+        if (query.rows.length === 0) {
+            res.status(500).json({ msg: 'No data in database' });
+            return;
+        }
+        const productDetails = query.rows;
+        res.status(200).json(productDetails);
+    }
+    catch (err) {
+        if (err instanceof Error)
+            res.status(500).json({ msg: err });
+    }
+});
+exports.getProductDetails = getProductDetails;
 const getOnSaleProducts = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const query = yield dbConn_1.default.query(`SELECT 

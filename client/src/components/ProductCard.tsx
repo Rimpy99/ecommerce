@@ -16,7 +16,7 @@ type ProductPropsType = {
 
 const ProductCard = ({product}: ProductPropsType) => {
     return(
-        <Link to={`/product/${product.product_id}`}>
+        <Link to={`/products/${product.product_id}`}>
             <Box 
                 sx={{ cursor: 'pointer', border: '1px solid lightgray', color: 'appColors.textColor' }}
             >

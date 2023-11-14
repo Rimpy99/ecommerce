@@ -1,6 +1,43 @@
 import { Request, Response } from "express";
 import pool from '../dbConn';
 
+export const getProductDetails = async (req: Request, res: Response) => {
+    try{
+        const productId = req.params.productId;
+
+        const query = await pool.query(
+            `SELECT 
+                product_id, 
+                name, 
+                image, 
+                price, 
+                sex, 
+                color, 
+                type,
+                ROUND(CAST(price - (price * discount_percent / 100) AS NUMERIC), 2) AS discount_price,
+                xs,
+                s,
+                m,
+                l,
+                xl,
+                xxl
+            FROM product NATURAL JOIN product_sizes WHERE product_id = $1`,
+            [productId]
+        );
+
+        if(query.rows.length === 0){
+            res.status(500).json({ msg: 'No data in database' });
+            return;
+        }
+
+        const productDetails = query.rows;
+
+        res.status(200).json(productDetails);
+    }catch(err){
+        if(err instanceof Error) res.status(500).json({ msg: err });
+    }
+}
+
 export const getOnSaleProducts = async (req: Request, res: Response) => {
     try{
         const query = await pool.query(

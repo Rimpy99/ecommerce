@@ -8,4 +8,5 @@ const products_1 = require("../controllers/products");
 const router = express_1.default.Router();
 router.get('/onsale', products_1.getOnSaleProducts);
 router.get('/:gender', products_1.getProducts);
+router.get('/getProductDetails/:productId', products_1.getProductDetails);
 exports.default = router;

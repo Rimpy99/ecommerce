@@ -12,6 +12,12 @@ type ProductType = {
     color: string,
     type: string,
     discount_price: number | null,
+    xs: string,
+    s: string,
+    m: string,
+    l: string,
+    xl: string,
+    xxl: string,
 }
 
 const ProductDetailsPage = () => {
@@ -21,10 +27,11 @@ const ProductDetailsPage = () => {
 
     const getProductInfoFromDB = async () => {
         try{
-            const fetchProduct = await fetch(`/product/${productId}`, { method: 'GET' });
+            const fetchProduct = await fetch(`/products/getProductDetails/${productId}`, { method: 'GET' });
             !fetchProduct.ok && setIsError(true);
             const productData = await fetchProduct.json();
-            setProductInfo(productData);
+            console.log(productData[0])
+            setProductInfo(productData[0]);
         }catch(err){
             setIsError(true);
         }
@@ -62,7 +69,7 @@ const ProductDetailsPage = () => {
 
     return(
         <>
-            {productId}
+            {productInfo.name}
         </>
     )
 };
