@@ -28,7 +28,7 @@ const ResponsiveStandardNavbar = () => {
                     width: '100%',
                 }}
             >
-                <Link to={'/'} onClick={() => setIsMenuActive(false)}>
+                <Link to={'/singin'} onClick={() => setIsMenuActive(false)}>
                     <HomeIcon
                         sx={{
                             ...commonNavlinkStyles,
@@ -81,7 +81,7 @@ const ResponsiveStandardNavbar = () => {
                                 borderColor: 'lightgray',
                             }}
                         >
-                            <Link to={'/x'} style={{ textDecoration: 'none' }} onClick={() => setIsMenuActive(false)}>
+                            <Link to={'/auth'} style={{ textDecoration: 'none' }} onClick={() => setIsMenuActive(false)}>
                                 <PersonIcon sx={{ ...commonNavlinkStyles }} />
                             </Link>
                             <Link to={'/cart'} style={{ textDecoration: 'none' }} onClick={() => setIsMenuActive(false)}>

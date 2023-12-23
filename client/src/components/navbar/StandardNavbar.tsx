@@ -29,7 +29,7 @@ const StandardNavbar = ({location}: StandardNavbarPropsTypes) => {
                 </NavLink>
             </FlexBetween>
             <FlexBetween>
-                <NavLink isPageCorrect={location === '/x' ? true : false} linkTo={'/x'} isChildAnIcon={true}>
+                <NavLink isPageCorrect={location === '/auth' ? true : false} linkTo={'/auth'} isChildAnIcon={true}>
                     <PersonIcon/>
                 </NavLink>
                 <NavLink isPageCorrect={location === '/cart' ? true : false} linkTo={'/cart'} isChildAnIcon={true}>

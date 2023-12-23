@@ -4,6 +4,7 @@ import ExplorePage from "./pages/ExplorePage";
 import { ThemeProvider } from '@mui/material/styles';
 import { theme } from './styles/theme';
 import HomePage from "./pages/HomePage";
+import AuthPage from "./pages/AuthPage";
 import ProductDetailsPage from "./pages/ProductDetailsPage";
 
 const App = () => {
@@ -17,6 +18,7 @@ const App = () => {
           <Route path='/men' element={<ExplorePage/>}/>
           <Route path='/women' element={<ExplorePage/>}/>
           <Route path='/onsale' element={<ExplorePage/>}/>
+          <Route path='/auth' element={<AuthPage />}/>
           <Route path='/products/:productId' element={<ProductDetailsPage/>}/>
         </Routes>
       </BrowserRouter>

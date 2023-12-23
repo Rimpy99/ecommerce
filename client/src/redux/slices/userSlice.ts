@@ -1,24 +1,24 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 type InitialStateType = {
-    id: string | null,
-    token: string | null,
-    email: string | null,
-    isAdmin: boolean,
+    userId: string | null,
+    userToken: string | null,
+    userEmail: string | null,
+    userIsAdmin: boolean,
 }
 
 type PayloadType = {
-    id: string,
-    token: string,
-    email: string,
-    isAdmin: boolean,
+    userId: string,
+    userToken: string,
+    userEmail: string,
+    userIsAdmin: boolean,
 }
 
 const initialState: InitialStateType = {
-    id: null,
-    token: null,
-    email: null,
-    isAdmin: false,
+    userId: null,
+    userToken: null,
+    userEmail: null,
+    userIsAdmin: false,
 };
 
 export const userSlice = createSlice({
@@ -26,10 +26,16 @@ export const userSlice = createSlice({
     initialState,
     reducers: {
         signIn: (state, action: PayloadAction<PayloadType>) =>  {
-            state = action.payload;
+            state.userId = action.payload.userId;
+            state.userToken = action.payload.userToken;
+            state.userEmail = action.payload.userEmail;
+            state.userIsAdmin = action.payload.userIsAdmin;
         },
         signOut: (state) => {
-            state = initialState;
+            state.userId = null
+            state.userToken = null
+            state.userEmail = null
+            state.userIsAdmin = false
         }
     }
 })

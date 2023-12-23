@@ -26,12 +26,12 @@ const ProductCard = ({product}: ProductPropsType) => {
                     <Typography 
                         sx={{ padding: '5px', fontSize: '18px', textDecoration: product.discount_price ? 'line-through' : 'none' }}
                     >
-                        {product.price}
+                        {product.price}$
                     </Typography>
                     { 
                         product.discount_price && 
                         <Typography sx={{ padding: '5px', fontSize: '18px', color: 'red' }}>
-                            {product.discount_price}
+                            {product.discount_price}$
                         </Typography>
                     }
                 </Box>

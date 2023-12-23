@@ -36,7 +36,6 @@ const ProductDetailsPage = () => {
             const fetchProduct = await fetch(`/products/getProductDetails/${productId}`, { method: 'GET' });
             !fetchProduct.ok && setIsError(true);
             const productData = await fetchProduct.json();
-            console.log(productData[0])
             setProductInfo(productData[0]);
         }catch(err){
             setIsError(true);
@@ -98,11 +97,13 @@ const ProductDetailsPage = () => {
                         </Typography>
                         <Box sx={{ display: "flex" }}>
                             <Typography sx={{ textDecoration: productInfo.discount_price ? 'line-through' : 'none', fontSize: "22px", letterSpacing: "4px", padding: "10px 0" }}>
-                                {productInfo.price}
+                                {productInfo.price}$
                             </Typography>
-                            <Typography sx={{ color: 'red', fontSize: "22px", letterSpacing: "4px", padding: "10px 25px" }}>
-                                {productInfo.discount_price}
-                            </Typography>
+                            {productInfo.discount_price && 
+                                <Typography sx={{ color: 'red', fontSize: "22px", letterSpacing: "4px", padding: "10px 25px" }}>
+                                    {productInfo.discount_price}$
+                                </Typography>
+                            }
                         </Box>
                         <Divider></Divider>
                         <Box sx={{ margin: "10px 0" }}>
