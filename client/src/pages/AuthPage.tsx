@@ -14,7 +14,7 @@ const AuthPage = () => {
                     <Typography sx={{ textAlign: "center", fontWeight: "bold", fontSize: "20px", letterSpacing: "2px" }}>
                         { isSignUpFormActive ? "SIGN UP" : "SIGN IN" }
                     </Typography>
-                    { isSignUpFormActive ? <SignUpForm /> : <SignInForm /> }
+                    { isSignUpFormActive ? <SignUpForm setIsSignUpFormActive={setIsSignUpFormActive}/> : <SignInForm /> }
                     <Button 
                         onClick={() => setIsSignUpFormActive(currentState => !currentState)}
                         sx={{ ...authFormButtonStyles }}
