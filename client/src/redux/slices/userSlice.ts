@@ -38,4 +38,7 @@ export const userSlice = createSlice({
             state.userIsAdmin = false
         }
     }
-})
+});
+
+export const { signIn, signOut } = userSlice.actions;
+export default userSlice.reducer;

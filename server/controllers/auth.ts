@@ -36,19 +36,20 @@ export const login = async (req: Request, res: Response) => {
         const { email, password } = req.body;
 
         const query = await pool.query(
-            "SELECT user_id, password FROM users WHERE email = $1",
+            "SELECT user_id, password, isadmin FROM users WHERE email = $1",
             [email]
         );
 
         const user = query.rows;
 
         if(user.length ===  0){
-            res.status(500).json({ msg: 'Such user does not exist' });
+            res.status(404).json({ msg: 'Such user does not exist' });
             return;
         }
 
         const hashedPassword = user[0].password;
         const userId = user[0].user_id;
+        const isAdmin = user[0].isadmin;
 
         const isPasswordMatching = await bcrypt.compare(password, hashedPassword);
 
@@ -61,7 +62,8 @@ export const login = async (req: Request, res: Response) => {
 
         const userInfo = {
             userId,
-            email
+            email,
+            isAdmin
         };
 
         res.status(200).json({ token, userInfo });

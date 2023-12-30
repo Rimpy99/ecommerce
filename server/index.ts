@@ -29,5 +29,6 @@ multer({ storage })
 
 app.use('/auth', authRoutes);
 app.use('/products', productsRoutes);
+app.use('/users', usersRouters);
 
 app.listen(process.env.PORT, () => console.log(`Server running...! ${process.env.PORT}`))

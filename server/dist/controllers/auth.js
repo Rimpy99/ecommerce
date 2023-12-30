@@ -38,14 +38,15 @@ exports.register = register;
 const login = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { email, password } = req.body;
-        const query = yield dbConn_1.default.query("SELECT user_id, password FROM users WHERE email = $1", [email]);
+        const query = yield dbConn_1.default.query("SELECT user_id, password, isadmin FROM users WHERE email = $1", [email]);
         const user = query.rows;
         if (user.length === 0) {
-            res.status(500).json({ msg: 'Such user does not exist' });
+            res.status(404).json({ msg: 'Such user does not exist' });
             return;
         }
         const hashedPassword = user[0].password;
         const userId = user[0].user_id;
+        const isAdmin = user[0].isadmin;
         const isPasswordMatching = yield bcrypt_1.default.compare(password, hashedPassword);
         if (!isPasswordMatching) {
             res.status(401).json({ msg: 'Invalid credentials' });
@@ -54,7 +55,8 @@ const login = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         const token = jsonwebtoken_1.default.sign({ userId: userId, email: email }, process.env.JWT_SECRET);
         const userInfo = {
             userId,
-            email
+            email,
+            isAdmin
         };
         res.status(200).json({ token, userInfo });
     }

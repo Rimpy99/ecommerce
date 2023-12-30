@@ -28,4 +28,5 @@ const storage = multer_1.default.diskStorage({
 (0, multer_1.default)({ storage });
 app.use('/auth', authRoutes_1.default);
 app.use('/products', productsRoutes_1.default);
+app.use('/users', usersRouters);
 app.listen(process.env.PORT, () => console.log(`Server running...! ${process.env.PORT}`));
