@@ -6,6 +6,7 @@ import multer from 'multer';
 
 import authRoutes from './routes/authRoutes';
 import productsRoutes from './routes/productsRoutes';
+import { getUserDetails } from './controllers/getUserDetails';
 
 const app = express();
 app.use(express.json());
@@ -29,6 +30,6 @@ multer({ storage })
 
 app.use('/auth', authRoutes);
 app.use('/products', productsRoutes);
-app.use('/users', usersRouters);
+app.get('/getUserDetails/:userId', getUserDetails);
 
 app.listen(process.env.PORT, () => console.log(`Server running...! ${process.env.PORT}`))

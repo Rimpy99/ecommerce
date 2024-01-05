@@ -10,6 +10,7 @@ const helmet_1 = __importDefault(require("helmet"));
 const multer_1 = __importDefault(require("multer"));
 const authRoutes_1 = __importDefault(require("./routes/authRoutes"));
 const productsRoutes_1 = __importDefault(require("./routes/productsRoutes"));
+const getUserDetails_1 = require("./controllers/getUserDetails");
 const app = (0, express_1.default)();
 app.use(express_1.default.json());
 dotenv_1.default.config();
@@ -28,5 +29,5 @@ const storage = multer_1.default.diskStorage({
 (0, multer_1.default)({ storage });
 app.use('/auth', authRoutes_1.default);
 app.use('/products', productsRoutes_1.default);
-app.use('/users', usersRouters);
+app.get('/getUserDetails/:userId', getUserDetails_1.getUserDetails);
 app.listen(process.env.PORT, () => console.log(`Server running...! ${process.env.PORT}`));
