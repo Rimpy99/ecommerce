@@ -25,7 +25,6 @@ const FilterMenu = ({colors, types, options, setOptions, priceRange, setPriceRan
 
     const [ isColorOpen, setIsColorOpen ] = useState<boolean>(false);
     const [ isClothingOpen, setIsClothingOpen ] = useState<boolean>(false);
-    const [ isGenderOpen, setIsGenderOpen ] = useState<boolean>(false);
 
     const handlePriceRangeChange = (event: Event, newPriceChange: number | number[]) => {
         setPriceRange(newPriceChange as number[]);
@@ -122,64 +121,6 @@ const FilterMenu = ({colors, types, options, setOptions, priceRange, setPriceRan
                             </Button>
                         ))
                     }
-                </Box>
-            }
-            <Divider/>
-            <Button 
-                sx={{ 
-                    ...filterMenuButtonStyles, 
-                    width: {xs: '100%', lg:'auto'},
-                }} 
-                onClick={() => setIsGenderOpen(current => !current)}
-            >
-                gender
-                { isGenderOpen ? <ExpandLessIcon/> : <ExpandMoreIcon/> }
-            </Button>
-            {
-                isGenderOpen &&
-                <Box sx={{ display: 'flex', justifyContent: 'center' }}>
-                    <Button
-                        sx={{
-                            margin: '0 5px',
-                            textTransform: 'uppercase',
-                            bgcolor: options.sex === '' ? 'appColors.buttonActiveBackground' : 'white',
-                            color: options.sex === '' ? 'white' : 'appColors.textColor',
-                            "&:hover": {
-                                bgcolor: options.sex === '' ? 'appColors.buttonActiveBackground' : 'appColors.buttonOnHoverBackground',
-                            } 
-                        }}  
-                        onClick={() => setOptions({...options, sex: ''})}
-                    >
-                        Both
-                    </Button>
-                    <Button
-                        sx={{
-                            margin: '0 5px',
-                            textTransform: 'uppercase',
-                            bgcolor: options.sex === 'M' ? 'appColors.buttonActiveBackground' : 'white',
-                            color: options.sex === 'M' ? 'white' : 'appColors.textColor',
-                            "&:hover": {
-                                bgcolor: options.sex === 'M' ? 'appColors.buttonActiveBackground' : 'appColors.buttonOnHoverBackground',
-                            } 
-                        }}  
-                        onClick={() => setOptions({...options, sex: 'M'})}
-                    >
-                        Men
-                    </Button>
-                    <Button
-                        sx={{
-                            margin: '0 5px',
-                            textTransform: 'uppercase',
-                            bgcolor: options.sex === 'F' ? 'appColors.buttonActiveBackground' : 'white',
-                            color: options.sex === 'F' ? 'white' : 'appColors.textColor',
-                            "&:hover": {
-                                bgcolor: options.sex === 'F' ? 'appColors.buttonActiveBackground' : 'appColors.buttonOnHoverBackground',
-                            } 
-                        }}  
-                        onClick={() => setOptions({...options, sex: 'F'})}
-                    >
-                        Women
-                    </Button>
                 </Box>
             }
             <Divider/>

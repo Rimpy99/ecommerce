@@ -36,7 +36,6 @@ const ProfilePage = () => {
                     display: 'flex', 
                     paddingTop: '100px', 
                     justifyContent: 'center'
-                    
                 }}
             >
                 <Box 

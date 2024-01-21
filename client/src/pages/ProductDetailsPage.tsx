@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { useAppSelector } from "../redux/hooks";
 import { Box, Typography, Button, List, ListItem, Divider } from "@mui/material";
 import SyncLoader from "react-spinners/SyncLoader";
 
@@ -31,6 +32,8 @@ const ProductDetailsPage = () => {
     const [ size, setSize ] = useState<string>('');
     const [ isError, setIsError ] = useState<boolean>(false);
 
+    const isUserLoggedIn = Boolean(useAppSelector((state) => state.user.userToken));
+
     const getProductInfoFromDB = async () => {
         try{
             const fetchProduct = await fetch(`/products/getProductDetails/${productId}`, { method: 'GET' });
@@ -45,6 +48,28 @@ const ProductDetailsPage = () => {
     useEffect(() => {
         getProductInfoFromDB();
     }, [])
+
+    const addToCart = () => {
+        if(productInfo){
+            console.log(productInfo)
+            const productToAdd = {
+                product_id: productId,
+                size: size,
+                quantity: 1,
+                price: productInfo.discount_price ? productInfo.discount_price : productInfo.price
+            }
+
+            if(isUserLoggedIn){
+                console.log('database')
+            }else{
+                const existingCart = localStorage.getItem('cart');
+
+                const updatedCart = existingCart ? [...JSON.parse(existingCart), productToAdd] : [productToAdd];
+
+                localStorage.setItem('cart', JSON.stringify(updatedCart));
+            }
+        }
+    }
 
     if(productInfo === null){
         if(isError){
@@ -147,6 +172,7 @@ const ProductDetailsPage = () => {
                                 fontSize: "20px",
                                 letterSpacing: "1px",
                             }}
+                            onClick={() => addToCart()}
                         >ADD TO CART</Button>
                         <Box>
                             <Typography>More information:</Typography>
